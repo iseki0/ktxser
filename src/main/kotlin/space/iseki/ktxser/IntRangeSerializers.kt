@@ -2,7 +2,6 @@ package space.iseki.ktxser
 
 import kotlinx.serialization.KSerializer
 import kotlinx.serialization.Serializable
-import kotlinx.serialization.SerializationException
 import kotlinx.serialization.descriptors.SerialDescriptor
 import kotlinx.serialization.descriptors.serialDescriptor
 import kotlinx.serialization.encoding.Decoder
@@ -14,15 +13,7 @@ object IntRangeSerializers {
             get() = serialDescriptor<String>()
 
         override fun deserialize(decoder: Decoder): IntRange {
-            val s = decoder.decodeString().split("..", limit = 2)
-            if (s.size != 2) {
-                throw SerializationException("Expected a string in the form of 'start..end', where start and end are integers")
-            }
-            try {
-                return s[0].toInt()..s[1].toInt()
-            } catch (_: NumberFormatException) {
-                throw SerializationException("Expected a string in the form of 'start..end', where start and end are integers")
-            }
+            return JUtils.parseIntRange(decoder.decodeString())
         }
 
         override fun serialize(encoder: Encoder, value: IntRange) {

@@ -1,4 +1,4 @@
-@file:JvmName("Utils")
+@file:JvmName("KUtils")
 
 package space.iseki.ktxser
 

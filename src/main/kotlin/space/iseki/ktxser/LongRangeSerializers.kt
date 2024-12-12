@@ -14,15 +14,7 @@ object LongRangeSerializers {
             get() = serialDescriptor<String>()
 
         override fun deserialize(decoder: Decoder): LongRange {
-            val s = decoder.decodeString().split("..", limit = 2)
-            if (s.size != 2) {
-                throw SerializationException("Expected a string in the form of 'start..end', where start and end are integers")
-            }
-            try {
-                return s[0].toLong()..s[1].toLong()
-            } catch (_: NumberFormatException) {
-                throw SerializationException("Expected a string in the form of 'start..end', where start and end are integers")
-            }
+            return JUtils.parseLongRange(decoder.decodeString())
         }
 
         override fun serialize(encoder: Encoder, value: LongRange) {
