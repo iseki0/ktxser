@@ -9,7 +9,7 @@ plugins {
 
 allprojects {
     group = "space.iseki.ktxser"
-    version = properties["version"]?.let { it as String }?.takeIf { "unspecified" !in it } ?: "0.1-SNAPSHOT"
+    version = properties["version"]?.let { it as String }?.takeIf { "unspecified" !in it } ?: "0.2-SNAPSHOT"
 
     repositories {
         mavenCentral()
