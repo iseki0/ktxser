@@ -99,6 +99,19 @@ public final class space/iseki/ktxser/LongRangeSerializers$Text : kotlinx/serial
 	public fun serialize (Lkotlinx/serialization/encoding/Encoder;Lkotlin/ranges/LongRange;)V
 }
 
+public final class space/iseki/ktxser/LongSerializers {
+	public static final field INSTANCE Lspace/iseki/ktxser/LongSerializers;
+}
+
+public final class space/iseki/ktxser/LongSerializers$UnsignedHex : kotlinx/serialization/KSerializer {
+	public static final field INSTANCE Lspace/iseki/ktxser/LongSerializers$UnsignedHex;
+	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Long;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public fun serialize (Lkotlinx/serialization/encoding/Encoder;J)V
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+}
+
 public final class space/iseki/ktxser/OffsetDateTimeSerializers {
 	public static final field INSTANCE Lspace/iseki/ktxser/OffsetDateTimeSerializers;
 }
@@ -110,5 +123,18 @@ public final class space/iseki/ktxser/OffsetDateTimeSerializers$Text : kotlinx/s
 	public fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
 	public fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/time/OffsetDateTime;)V
+}
+
+public final class space/iseki/ktxser/ULongSerializers {
+	public static final field INSTANCE Lspace/iseki/ktxser/ULongSerializers;
+}
+
+public final class space/iseki/ktxser/ULongSerializers$Hex : kotlinx/serialization/KSerializer {
+	public static final field INSTANCE Lspace/iseki/ktxser/ULongSerializers$Hex;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public fun deserialize-I7RO_PI (Lkotlinx/serialization/encoding/Decoder;)J
+	public fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun serialize-2TYgG_w (Lkotlinx/serialization/encoding/Encoder;J)V
 }
 
