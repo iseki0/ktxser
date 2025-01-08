@@ -7,32 +7,33 @@ import kotlinx.serialization.descriptors.serialDescriptor
 import kotlinx.serialization.encoding.Decoder
 import kotlinx.serialization.encoding.Encoder
 
-object IntRangeSerializers {
-    object Text : KSerializer<IntRange> {
+object LongRangeSerializers {
+    object Text : KSerializer<LongRange> {
         override val descriptor: SerialDescriptor
             get() = serialDescriptor<String>()
 
-        override fun deserialize(decoder: Decoder): IntRange {
-            return JUtils.parseIntRange(decoder.decodeString())
+        override fun deserialize(decoder: Decoder): LongRange {
+            return parseLongRange(decoder.decodeString())
         }
 
-        override fun serialize(encoder: Encoder, value: IntRange) {
+        override fun serialize(encoder: Encoder, value: LongRange) {
             encoder.encodeString("${value.first}..${value.last}")
         }
     }
 
-    object Object : KSerializer<IntRange> {
+    object Object : KSerializer<LongRange> {
         @Serializable
-        private data class D(val first: Int, val last: Int)
+        private data class D(val first: Long, val last: Long)
 
         override val descriptor: SerialDescriptor
             get() = D.serializer().descriptor
 
-        override fun deserialize(decoder: Decoder): IntRange =
+        override fun deserialize(decoder: Decoder): LongRange =
             decoder.decodeSerializableValue(D.serializer()).let { it.first..it.last }
 
-        override fun serialize(encoder: Encoder, value: IntRange) {
+        override fun serialize(encoder: Encoder, value: LongRange) {
             encoder.encodeSerializableValue(D.serializer(), D(value.first, value.last))
         }
     }
 }
+

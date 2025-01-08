@@ -1,15 +1,17 @@
+import java.util.*
+
 plugins {
-    `java-library`
-    kotlin("jvm") version "2.0.21"
-    kotlin("plugin.serialization") version "2.0.21"
-    id("org.jetbrains.kotlinx.binary-compatibility-validator") version "0.16.3"
-    `maven-publish`
+    alias(libs.plugins.kotlin)
+    alias(libs.plugins.kotlin.serialization)
+    alias(libs.plugins.kotlinx.kover)
+    alias(libs.plugins.kotlinx.binary.compatibility.validator)
     signing
+    `maven-publish`
 }
 
 allprojects {
     group = "space.iseki.ktxser"
-    version = properties["version"]?.let { it as String }?.takeIf { "unspecified" !in it } ?: "0.2-SNAPSHOT"
+    version = properties["version"]?.let { it as String }?.takeIf { "unspecified" !in it } ?: "0.3-SNAPSHOT"
 
     repositories {
         mavenCentral()
@@ -17,21 +19,21 @@ allprojects {
 }
 
 dependencies {
-    testImplementation(kotlin("test"))
-    api("org.jetbrains.kotlinx:kotlinx-serialization-core:1.7.3")
-    testImplementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.7.3")
-}
-
-tasks.test {
-    useJUnitPlatform()
-}
-
-java {
-    withSourcesJar()
+    commonMainApi(libs.kotlinx.serialization.core)
+    commonTestImplementation(kotlin("test"))
+    commonTestImplementation(libs.kotlinx.serialization.json)
 }
 
 kotlin {
     jvmToolchain(17)
+    targets {
+        jvm {
+            withJava()
+            compilerOptions {
+                freeCompilerArgs.add("-Xjvm-default=all-compatibility")
+            }
+        }
+    }
 }
 
 tasks.withType<AbstractArchiveTask> {
@@ -39,8 +41,17 @@ tasks.withType<AbstractArchiveTask> {
     isReproducibleFileOrder = true
 }
 
-val emptyJavadoc = tasks.create("emptyJavadoc", Jar::class) {
-    archiveClassifier.set("javadoc")
+tasks.getByName("jvmJar", Jar::class) {
+    into("/") {
+        from("/LICENSE")
+        from("/NOTICE")
+    }
+}
+
+tasks.withType<Test> {
+    testLogging {
+        events("passed", "skipped", "failed")
+    }
 }
 
 publishing {
@@ -64,11 +75,13 @@ publishing {
     }
 
     publications {
-        create<MavenPublication>("mavenJava") {
-            from(components["java"])
-            artifact(emptyJavadoc)
-        }
         withType<MavenPublication> {
+            val pubName = name.replaceFirstChar { if (it.isLowerCase()) it.titlecase(Locale.getDefault()) else "$it" }
+            val emptyJavadocJar by tasks.register<Jar>("emptyJavadocJar$pubName") {
+                archiveClassifier = "javadoc"
+                archiveBaseName = artifactId
+            }
+            artifact(emptyJavadocJar)
             pom {
                 val projectUrl = "https://github.com/iseki0/ktxser"
                 name = "PEFile"

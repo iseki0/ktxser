@@ -1,0 +1,13 @@
+[versions]
+kotlin = "2.1.0"
+kotlinx-serialization-library = "1.8.0"
+[libraries]
+# Kotlinx Serialization
+kotlinx-serialization-core = { module = "org.jetbrains.kotlinx:kotlinx-serialization-core", version.ref = "kotlinx-serialization-library" }
+kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinx-serialization-library" }
+[bundles]
+[plugins]
+kotlin = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
+kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
+kotlinx-kover = { id = "org.jetbrains.kotlinx.kover", version = "0.7.6" }
+kotlinx-binary-compatibility-validator = "org.jetbrains.kotlinx.binary-compatibility-validator:0.17.0"
