@@ -7,8 +7,8 @@ import kotlinx.serialization.encoding.Decoder
 import kotlinx.serialization.encoding.Encoder
 import java.time.LocalDate
 
-object LocalDateSerializers {
-    object Text : KSerializer<LocalDate> {
+data object LocalDateSerializers {
+    data object Text : KSerializer<LocalDate> {
         override val descriptor: SerialDescriptor
             get() = serialDescriptor<String>()
 

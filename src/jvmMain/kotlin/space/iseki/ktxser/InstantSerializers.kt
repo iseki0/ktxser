@@ -7,8 +7,8 @@ import kotlinx.serialization.encoding.Decoder
 import kotlinx.serialization.encoding.Encoder
 import java.time.Instant
 
-object InstantSerializers {
-    object Unix : KSerializer<Instant> {
+data object InstantSerializers {
+    data object Unix : KSerializer<Instant> {
         override val descriptor: SerialDescriptor
             get() = serialDescriptor<Long>()
 
@@ -21,7 +21,7 @@ object InstantSerializers {
         }
     }
 
-    object UnixMillis : KSerializer<Instant> {
+    data object UnixMillis : KSerializer<Instant> {
         override val descriptor: SerialDescriptor
             get() = serialDescriptor<Long>()
 
@@ -34,7 +34,7 @@ object InstantSerializers {
         }
     }
 
-    object Text : KSerializer<Instant> {
+    data object Text : KSerializer<Instant> {
         override val descriptor: SerialDescriptor
             get() = serialDescriptor<String>()
 

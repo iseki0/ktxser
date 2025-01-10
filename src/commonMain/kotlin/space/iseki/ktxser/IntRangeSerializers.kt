@@ -7,8 +7,8 @@ import kotlinx.serialization.descriptors.serialDescriptor
 import kotlinx.serialization.encoding.Decoder
 import kotlinx.serialization.encoding.Encoder
 
-object IntRangeSerializers {
-    object Text : KSerializer<IntRange> {
+data object IntRangeSerializers {
+    data object Text : KSerializer<IntRange> {
         override val descriptor: SerialDescriptor
             get() = serialDescriptor<String>()
 
@@ -21,7 +21,7 @@ object IntRangeSerializers {
         }
     }
 
-    object Object : KSerializer<IntRange> {
+    data object Object : KSerializer<IntRange> {
         @Serializable
         private data class D(val first: Int, val last: Int)
 

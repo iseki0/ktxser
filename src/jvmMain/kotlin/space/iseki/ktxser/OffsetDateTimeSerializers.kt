@@ -8,9 +8,9 @@ import kotlinx.serialization.encoding.Encoder
 import java.time.OffsetDateTime
 import java.time.format.DateTimeFormatter
 
-object OffsetDateTimeSerializers {
+data object OffsetDateTimeSerializers {
 
-    object Text : KSerializer<OffsetDateTime> {
+    data object Text : KSerializer<OffsetDateTime> {
         override val descriptor: SerialDescriptor
             get() = serialDescriptor<String>()
 

@@ -6,8 +6,8 @@ import kotlinx.serialization.descriptors.serialDescriptor
 import kotlinx.serialization.encoding.Decoder
 import kotlinx.serialization.encoding.Encoder
 
-object ULongSerializers{
-    object Hex: KSerializer<ULong> {
+data object ULongSerializers {
+    data object Hex : KSerializer<ULong> {
         override val descriptor: SerialDescriptor
             get() = serialDescriptor<String>()
 
