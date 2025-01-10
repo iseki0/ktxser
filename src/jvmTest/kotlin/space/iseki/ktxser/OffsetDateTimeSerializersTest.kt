@@ -2,9 +2,9 @@ package space.iseki.ktxser
 
 import kotlinx.serialization.SerializationException
 import kotlinx.serialization.json.Json
-import kotlin.test.assertEquals
 import java.time.OffsetDateTime
 import kotlin.test.Test
+import kotlin.test.assertEquals
 import kotlin.test.assertFailsWith
 
 class OffsetDateTimeSerializersTest {

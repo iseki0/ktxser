@@ -60,34 +60,35 @@ class LongRangeSerializersTest {
         }
     }
 
-@Test
-fun deserializeTextOverflow() {
-    val json = "\"9223372036854775807..9223372036854775808\""
-    assertFailsWith<SerializationException> {
-        Json.decodeFromString(LongRangeSerializers.Text, json)
+    @Test
+    fun deserializeTextOverflow() {
+        val json = "\"9223372036854775807..9223372036854775808\""
+        assertFailsWith<SerializationException> {
+            Json.decodeFromString(LongRangeSerializers.Text, json)
+        }
+    }
+
+    @Test
+    fun deserializeObjectOverflow() {
+        val json = "{\"first\":9223372036854775807,\"last\":9223372036854775808}"
+        assertFailsWith<SerializationException> {
+            Json.decodeFromString(LongRangeSerializers.Object, json)
+        }
+    }
+
+    @Test
+    fun deserializeTextUnderflow() {
+        val json = "\"-9223372036854775808..-9223372036854775809\""
+        assertFailsWith<SerializationException> {
+            Json.decodeFromString(LongRangeSerializers.Text, json)
+        }
+    }
+
+    @Test
+    fun deserializeObjectUnderflow() {
+        val json = "{\"first\":-9223372036854775808,\"last\":-9223372036854775809}"
+        assertFailsWith<SerializationException> {
+            Json.decodeFromString(LongRangeSerializers.Object, json)
+        }
     }
 }
-
-@Test
-fun deserializeObjectOverflow() {
-    val json = "{\"first\":9223372036854775807,\"last\":9223372036854775808}"
-    assertFailsWith<SerializationException> {
-        Json.decodeFromString(LongRangeSerializers.Object, json)
-    }
-}
-
-@Test
-fun deserializeTextUnderflow() {
-    val json = "\"-9223372036854775808..-9223372036854775809\""
-    assertFailsWith<SerializationException> {
-        Json.decodeFromString(LongRangeSerializers.Text, json)
-    }
-}
-
-@Test
-fun deserializeObjectUnderflow() {
-    val json = "{\"first\":-9223372036854775808,\"last\":-9223372036854775809}"
-    assertFailsWith<SerializationException> {
-        Json.decodeFromString(LongRangeSerializers.Object, json)
-    }
-}}

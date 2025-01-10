@@ -1,4 +1,5 @@
 package space.iseki.ktxser
+
 import kotlinx.serialization.SerializationException
 import kotlinx.serialization.json.Json
 import java.time.LocalDate

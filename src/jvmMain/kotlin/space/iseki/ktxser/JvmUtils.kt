@@ -1,4 +1,5 @@
 @file:JvmName("-JvmUtils")
+
 package space.iseki.ktxser
 
 import kotlinx.serialization.SerializationException
