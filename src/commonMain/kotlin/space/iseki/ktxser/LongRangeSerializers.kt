@@ -9,6 +9,7 @@ import kotlinx.serialization.encoding.Encoder
 
 data object LongRangeSerializers {
     data object Text : KSerializer<LongRange> {
+        override fun toString(): String = "LongRangeSerializers.Text"
         override val descriptor: SerialDescriptor
             get() = serialDescriptor<String>()
 
@@ -22,6 +23,7 @@ data object LongRangeSerializers {
     }
 
     data object Object : KSerializer<LongRange> {
+        override fun toString(): String = "LongRangeSerializers.Object"
         @Serializable
         private data class D(val first: Long, val last: Long)
 

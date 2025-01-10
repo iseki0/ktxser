@@ -8,6 +8,7 @@ import kotlinx.serialization.encoding.Encoder
 
 data object LongSerializers {
     data object UnsignedHex : KSerializer<Long> {
+        override fun toString(): String = "LongSerializers.UnsignedHex"
         override val descriptor: SerialDescriptor
             get() = serialDescriptor<String>()
 

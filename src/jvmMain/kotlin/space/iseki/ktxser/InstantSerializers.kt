@@ -9,6 +9,7 @@ import java.time.Instant
 
 data object InstantSerializers {
     data object Unix : KSerializer<Instant> {
+        override fun toString(): String = "InstantSerializers.Unix"
         override val descriptor: SerialDescriptor
             get() = serialDescriptor<Long>()
 
@@ -22,6 +23,7 @@ data object InstantSerializers {
     }
 
     data object UnixMillis : KSerializer<Instant> {
+        override fun toString(): String = "InstantSerializers.UnixMillis"
         override val descriptor: SerialDescriptor
             get() = serialDescriptor<Long>()
 
@@ -35,6 +37,7 @@ data object InstantSerializers {
     }
 
     data object Text : KSerializer<Instant> {
+        override fun toString(): String = "InstantSerializers.Text"
         override val descriptor: SerialDescriptor
             get() = serialDescriptor<String>()
 

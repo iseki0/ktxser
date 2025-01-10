@@ -9,6 +9,7 @@ import java.time.LocalDate
 
 data object LocalDateSerializers {
     data object Text : KSerializer<LocalDate> {
+        override fun toString(): String = "LocalDateSerializers.Text"
         override val descriptor: SerialDescriptor
             get() = serialDescriptor<String>()
 

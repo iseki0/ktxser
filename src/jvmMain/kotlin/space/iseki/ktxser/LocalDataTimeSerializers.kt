@@ -10,6 +10,7 @@ import java.time.format.DateTimeFormatter
 
 data object LocalDataTimeSerializers {
     data object Text : KSerializer<LocalDateTime> {
+        override fun toString(): String = "LocalDataTimeSerializers.Text"
         override val descriptor: SerialDescriptor
             get() = serialDescriptor<String>()
 

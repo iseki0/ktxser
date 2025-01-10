@@ -11,6 +11,7 @@ import java.time.format.DateTimeFormatter
 data object OffsetDateTimeSerializers {
 
     data object Text : KSerializer<OffsetDateTime> {
+        override fun toString(): String = "OffsetDateTimeSerializers.Text"
         override val descriptor: SerialDescriptor
             get() = serialDescriptor<String>()
 

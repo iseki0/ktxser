@@ -8,7 +8,9 @@ import kotlinx.serialization.encoding.Decoder
 import kotlinx.serialization.encoding.Encoder
 
 data object IntRangeSerializers {
+
     data object Text : KSerializer<IntRange> {
+        override fun toString(): String = "IntRangeSerializers.Text"
         override val descriptor: SerialDescriptor
             get() = serialDescriptor<String>()
 
@@ -22,6 +24,7 @@ data object IntRangeSerializers {
     }
 
     data object Object : KSerializer<IntRange> {
+        override fun toString(): String = "IntRangeSerializers.Object"
         @Serializable
         private data class D(val first: Int, val last: Int)
 
