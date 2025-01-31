@@ -84,8 +84,8 @@ publishing {
             artifact(emptyJavadocJar)
             pom {
                 val projectUrl = "https://github.com/iseki0/ktxser"
-                name = "PEFile"
-                description = "Additional serializers for kotlinx.serialization"
+                name = "ktxser"
+                description = "Some serializers based on Kotlinx.serialization that may be useful."
                 url = projectUrl
                 licenses {
                     license {
